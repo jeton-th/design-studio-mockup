@@ -11,9 +11,9 @@ const Login = ({ currentUser }) => {
   const [error, setError] = useState('');
   const handleEmail = ((event) => (setEmail(event.target.value)));
   const handlePassword = ((event) => (setPassword(event.target.value)));
-  const handleLogin = (event) => {
+  const handleSignup = (event) => {
     event.preventDefault();
-    firebaseApp.auth().signInWithEmailAndPassword(email, password)
+    firebaseApp.auth().createUserWithEmailAndPassword(email, password)
       .catch((error) => {
         setError(error.message);
       });
@@ -27,12 +27,12 @@ const Login = ({ currentUser }) => {
 
   return (
     <div>
-      <h2>{t('login.link')}</h2>
+      <h2>{t('signup.link')}</h2>
       <div className="error">{error}</div>
-      <form className="login-form" onSubmit={handleLogin}>
+      <form className="signup-form" onSubmit={handleSignup}>
         <input type="email" placeholder={t('email')} onChange={handleEmail} />
         <input type="password" placeholder={t('password')} onChange={handlePassword} />
-        <input type="submit" value={t('login.link')} />
+        <input type="submit" value={t('signup.link')} />
       </form>
     </div>
   );
