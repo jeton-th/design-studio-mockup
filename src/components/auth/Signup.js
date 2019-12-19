@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import firebaseApp from '../../utils/auth';
+import { AuthContext } from './Auth';
 
-const Login = ({ currentUser }) => {
+const Login = () => {
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { currentUser } = useContext(AuthContext);
   const [error, setError] = useState('');
   const handleEmail = ((event) => (setEmail(event.target.value)));
   const handlePassword = ((event) => (setPassword(event.target.value)));
@@ -36,14 +37,6 @@ const Login = ({ currentUser }) => {
       </form>
     </div>
   );
-};
-
-Login.propTypes = {
-  currentUser: PropTypes.objectOf(PropTypes.shape),
-};
-
-Login.defaultProps = {
-  currentUser: null,
 };
 
 export default Login;

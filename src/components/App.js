@@ -1,27 +1,25 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import firebaseApp from '../utils/auth';
 import Header from './layout/Header';
 import Dashboard from './auth/Dashboard';
 import Login from './auth/Login';
 import Signup from './auth/Signup';
 import '../utils/i18n';
+import { AuthProvider } from './auth/Auth';
 
-const App = () => {
-  const [currentUser, setCurrentUser] = useState(null);
-  useEffect(() => (firebaseApp.auth().onAuthStateChanged(setCurrentUser)), []);
-
-  return (
-    <Suspense fallback={null}>
+const App = () => (
+  <Suspense fallback={null}>
+    <AuthProvider>
       <BrowserRouter>
-        <Header currentUser={currentUser} />
+        <Header />
         <Switch>
-          <Route exact path="/" component={Dashboard} currentUser={currentUser} />
-          <Route path="/login" component={Login} currentUser={currentUser} />
-          <Route path="/signup" component={Signup} currentUser={currentUser} />
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
         </Switch>
       </BrowserRouter>
-    </Suspense>
-  );
-};
+    </AuthProvider>
+  </Suspense>
+);
+
 export default App;

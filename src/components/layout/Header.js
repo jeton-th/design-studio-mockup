@@ -1,17 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import firebaseApp from '../../utils/auth';
+import { AuthContext } from '../auth/Auth';
 
-const Header = ({ currentUser }) => {
+const Header = () => {
   const { t, i18n } = useTranslation();
   const changeLanguage = (event) => (i18n.changeLanguage(event.target.value));
-  const logout = () => {
-    firebaseApp
-      .auth()
-      .signOut();
-  };
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <header className="main-header">
@@ -23,7 +19,7 @@ const Header = ({ currentUser }) => {
 
           <nav className="main-nav">
             {currentUser ? (
-              <Link to="/" onClick={logout}>{t('logout.link')}</Link>
+              <Link to="/" onClick={() => firebaseApp.auth().signOut()}>{t('logout.link')}</Link>
             ) : (
               <div>
                 <Link to="/login">{t('login.link')}</Link>
@@ -40,14 +36,6 @@ const Header = ({ currentUser }) => {
       </div>
     </header>
   );
-};
-
-Header.propTypes = {
-  currentUser: PropTypes.objectOf(PropTypes.shape),
-};
-
-Header.defaultProps = {
-  currentUser: null,
 };
 
 export default Header;
