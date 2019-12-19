@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import firebaseApp from '../../utils/auth';
 import { AuthContext } from '../auth/Auth';
+import '../../style/sass/Header.scss';
+
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -14,24 +16,27 @@ const Header = () => {
       <div className="container">
         <div className="brand">
           <Link to="/" className="logo">
-            Design Studio
+            <h1>Design Studio</h1>
           </Link>
+        </div>
 
-          <nav className="main-nav">
-            {currentUser ? (
+        <nav className="main-nav">
+          {currentUser ? (
+            <div>
+              <Link to="/dashboard">{t('dashboard')}</Link>
               <Link to="/" onClick={() => firebaseApp.auth().signOut()}>{t('logout.link')}</Link>
-            ) : (
-              <div>
-                <Link to="/login">{t('login.link')}</Link>
-                <Link to="/signup">{t('signup.link')}</Link>
-              </div>
-            )}
-
-            <div className="lang">
-              <button type="button" value="en" onClick={changeLanguage}>English</button>
-              <button type="button" value="fr" onClick={changeLanguage}>Français</button>
             </div>
-          </nav>
+          ) : (
+            <div>
+              <Link to="/login">{t('login.link')}</Link>
+              <Link to="/signup">{t('signup.link')}</Link>
+            </div>
+          )}
+        </nav>
+
+        <div className="lang">
+          <button type="button" value="en" onClick={changeLanguage}>English</button>
+          <button type="button" value="fr" onClick={changeLanguage}>Français</button>
         </div>
       </div>
     </header>

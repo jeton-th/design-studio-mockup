@@ -22,7 +22,7 @@ const Login = () => {
 
   if (currentUser) {
     return (
-      <Redirect to="/" />
+      <Redirect to="/dashboard" />
     );
   }
 
