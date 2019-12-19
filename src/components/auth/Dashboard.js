@@ -12,6 +12,7 @@ const Dashboard = () => {
   return (
     <div>
       <h2>{t('dashboard')}</h2>
+      <p>{currentUser.displayName}</p>
       <p>{currentUser.email}</p>
     </div>
   );

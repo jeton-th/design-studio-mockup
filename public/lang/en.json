@@ -4,6 +4,11 @@
   "signup.link": "Sign up",
   "lang.link": "Language",
   "dashboard": "Dashboard",
+  "name": "Name",
   "email": "Email",
-  "password": "Password"
+  "password": "Password",
+  "auth/invalid-email": "The email format is not correct.",
+  "auth/wrong-password": "The password is wrong.",
+  "auth/email-already-in-use": "The email address is already in use.",
+  "auth/weak-password": "The password is too short."
 }
