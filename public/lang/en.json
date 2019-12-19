@@ -1,8 +1,8 @@
 {
-  "login.link": "Log in",
-  "logout.link": "Log out",
-  "signup.link": "Sign up",
-  "lang.link": "Language",
+  "login": "Log in",
+  "logout": "Log out",
+  "signup": "Sign up",
+  "lang": "Language",
   "dashboard": "Dashboard",
   "name": "Name",
   "email": "Email",

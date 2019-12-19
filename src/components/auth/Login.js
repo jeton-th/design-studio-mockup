@@ -28,12 +28,12 @@ const Login = () => {
 
   return (
     <div>
-      <h2>{t('login.link')}</h2>
+      <h2>{t('login')}</h2>
       <div className="error">{error}</div>
       <form className="login-form" onSubmit={handleLogin}>
         <input type="email" placeholder={t('email')} onChange={handleEmail} required />
         <input type="password" placeholder={t('password')} onChange={handlePassword} required />
-        <input type="submit" value={t('login.link')} />
+        <input type="submit" value={t('login')} />
       </form>
     </div>
   );

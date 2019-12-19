@@ -24,12 +24,12 @@ const Header = () => {
           {currentUser ? (
             <div>
               <Link to="/dashboard">{t('dashboard')}</Link>
-              <Link to="/" onClick={() => firebaseApp.auth().signOut()}>{t('logout.link')}</Link>
+              <Link to="/" onClick={() => firebaseApp.auth().signOut()}>{t('logout')}</Link>
             </div>
           ) : (
             <div>
-              <Link to="/login">{t('login.link')}</Link>
-              <Link to="/signup">{t('signup.link')}</Link>
+              <Link to="/login">{t('login')}</Link>
+              <Link to="/signup">{t('signup')}</Link>
             </div>
           )}
         </nav>

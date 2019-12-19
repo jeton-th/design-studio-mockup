@@ -1,9 +1,14 @@
 {
-  "login.link": "Se connecter",
-  "logout.link": "Se dèconnecter",
-  "signup.link": "S'inscrire",
-  "lang.link": "Langue",
+  "login": "Se connecter",
+  "logout": "Se dèconnecter",
+  "signup": "S'inscrire",
+  "lang": "Langue",
   "dashboard": "Le Tableau de Bord",
   "email": "Adresse courriel",
-  "password": "Mot de passe"
+  "password": "Mot de passe",
+  "name": "Nom",
+  "auth/invalid-email": "The email format is not correct.",
+  "auth/wrong-password": "The password is wrong.",
+  "auth/email-already-in-use": "The email address is already in use.",
+  "auth/weak-password": "The password is too short."
 }
