@@ -16,3 +16,16 @@ body {
   min-height: calc(100vh - 60px);
   box-sizing: border-box;
 }
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+input[type="button"],
+input[type="submit"] {
+  padding: 10px;
+  margin: 0.5em 0;
+  border-radius: 0;
+  border: 1px solid #aaaaaa;
+}

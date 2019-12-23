@@ -1,18 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import firebaseApp from '../../utils/auth';
-import { AuthContext } from './Auth';
+import firebaseApp from '../../utils/firebaseApp';
+import 'firebase/firestore';
+import '../../style/sass/Auth.css';
 
-const Login = () => {
+const Signup = () => {
   const { t } = useTranslation();
-  const { currentUser } = useContext(AuthContext);
-
+  const firestore = firebaseApp.firestore();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
   const handleName = ((event) => (setName(event.target.value)));
   const handleEmail = ((event) => (setEmail(event.target.value)));
   const handlePassword = ((event) => (setPassword(event.target.value)));
@@ -20,19 +18,14 @@ const Login = () => {
     event.preventDefault();
     firebaseApp.auth().createUserWithEmailAndPassword(email, password)
       .then((result) => result.user.updateProfile({ displayName: name }))
+      .then(() => firestore.collection('users').add({ email, role: 'guest' }))
       .catch((error) => setError(t(error.code)));
   };
-
-  if (currentUser) {
-    return (
-      <Redirect exact to="/dashboard" />
-    );
-  }
 
   return (
     <div>
       <h2>{t('signup')}</h2>
-      <div className="error">{error}</div>
+      {error && <div className="error">{error}</div>}
       <form className="signup-form" onSubmit={handleSignup}>
         <input type="text" placeholder={t('name')} onChange={handleName} required />
         <input type="email" placeholder={t('email')} onChange={handleEmail} required />
@@ -43,4 +36,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

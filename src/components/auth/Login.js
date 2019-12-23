@@ -1,17 +1,14 @@
-import React, { useState, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import firebaseApp from '../../utils/auth';
-import { AuthContext } from './Auth';
+import firebaseApp from '../../utils/firebaseApp';
+import 'firebase/auth';
+import '../../style/sass/Auth.css';
 
 const Login = () => {
   const { t } = useTranslation();
-  const { currentUser } = useContext(AuthContext);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
   const handleEmail = ((event) => (setEmail(event.target.value)));
   const handlePassword = ((event) => (setPassword(event.target.value)));
   const handleLogin = (event) => {
@@ -19,12 +16,6 @@ const Login = () => {
     firebaseApp.auth().signInWithEmailAndPassword(email, password)
       .catch((error) => setError(t(error.code)));
   };
-
-  if (currentUser) {
-    return (
-      <Redirect to="/dashboard" />
-    );
-  }
 
   return (
     <div>
