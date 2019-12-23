@@ -1,9 +1,10 @@
 {
+  "home": "Page d'Accueil",
+  "dashboard": "Le Tableau de Bord",
   "login": "Se connecter",
   "logout": "Se dèconnecter",
   "signup": "S'inscrire",
   "lang": "Langue",
-  "dashboard": "Le Tableau de Bord",
   "email": "Adresse courriel",
   "password": "Mot de passe",
   "name": "Nom",
