@@ -5,7 +5,6 @@ import firebaseApp from '../../utils/firebaseApp';
 import { AuthContext } from '../auth/Auth';
 import '../../style/sass/Header.scss';
 
-
 const Header = () => {
   const { t, i18n } = useTranslation();
   const changeLanguage = (event) => (i18n.changeLanguage(event.target.value));

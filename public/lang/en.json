@@ -1,9 +1,10 @@
 {
+  "home": "Home",
+  "dashboard": "Dashboard",
   "login": "Log in",
   "logout": "Log out",
   "signup": "Sign up",
   "lang": "Language",
-  "dashboard": "Dashboard",
   "name": "Name",
   "email": "Email",
   "password": "Password",
