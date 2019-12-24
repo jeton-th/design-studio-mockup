@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from './Auth';
+import Products from '../products/Products';
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -9,8 +10,13 @@ const Dashboard = () => {
   return (
     <div>
       <h2>{t('dashboard')}</h2>
-      <p>{currentUser.displayName}</p>
-      <p>{currentUser.email}</p>
+      <div className="info">
+        <h3>{currentUser.name}</h3>
+        <i>{currentUser.role}</i>
+        <p>{currentUser.email}</p>
+      </div>
+      {(currentUser === 'admin')
+        && <Products />}
     </div>
   );
 };

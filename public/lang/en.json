@@ -11,5 +11,6 @@
   "auth/invalid-email": "The email format is not correct.",
   "auth/wrong-password": "The password is wrong.",
   "auth/email-already-in-use": "The email address is already in use.",
-  "auth/weak-password": "The password is too short."
+  "auth/weak-password": "The password is too short.",
+  "auth/user-not-found": "User not found"
 }

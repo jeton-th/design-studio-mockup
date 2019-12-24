@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import firebaseApp from '../../utils/firebaseApp';
-import 'firebase/firestore';
+import firebaseApp, { firestore } from '../../utils/firebaseApp';
 import '../../style/sass/Auth.css';
 
 const Signup = () => {
   const { t } = useTranslation();
-  const firestore = firebaseApp.firestore();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -17,8 +15,7 @@ const Signup = () => {
   const handleSignup = (event) => {
     event.preventDefault();
     firebaseApp.auth().createUserWithEmailAndPassword(email, password)
-      .then((result) => result.user.updateProfile({ displayName: name }))
-      .then(() => firestore.collection('users').add({ email, role: 'guest' }))
+      .then((resp) => firestore.collection('users').doc(resp.user.uid).set({ name, role: 'guest' }))
       .catch((error) => setError(t(error.code)));
   };
 
