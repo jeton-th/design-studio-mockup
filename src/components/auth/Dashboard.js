@@ -15,8 +15,13 @@ const Dashboard = () => {
         <i>{currentUser.role}</i>
         <p>{currentUser.email}</p>
       </div>
-      {(currentUser === 'admin')
-        && <Products />}
+
+      {(currentUser.role === 'admin' || currentUser.role === 'seller')
+      && (
+      <div className="products">
+        <Products />
+      </div>
+      )}
     </div>
   );
 };
