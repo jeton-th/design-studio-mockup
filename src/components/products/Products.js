@@ -8,7 +8,7 @@ const Products = () => {
 
   return (
     <div className="products">
-      <h1>{t('Products')}</h1>
+      <h1>{t('products')}</h1>
       <NewProduct />
       <ProductsList />
     </div>

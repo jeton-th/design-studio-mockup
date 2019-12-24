@@ -35,24 +35,24 @@ const NewProduct = () => {
     <div className="new-product">
       {error && <div className="error">{error}</div>}
       <form onSubmit={addProduct}>
-        <h3>{t('New Product')}</h3>
+        <h3>{t('new-product')}</h3>
         <label htmlFor="name">
-          {t('Name')}
+          {t('name')}
 :
           <input type="text" id="name" value={name} onChange={handleName} required />
         </label>
         <label htmlFor="description">
-          {t('Description')}
+          {t('description')}
 :
           <textarea name="description" value={description} onChange={handleDescription} required />
         </label>
         <label htmlFor="price">
-          {t('Price')}
+          {t('price')}
 :
           <input type="number" name="price" value={price} onChange={handlePrice} required />
         </label>
 
-        <input type="submit" value={t('Add Product')} />
+        <input type="submit" value={t('add-product')} />
       </form>
     </div>
   );
