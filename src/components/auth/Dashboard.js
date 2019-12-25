@@ -2,15 +2,16 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from './Auth';
 import Products from '../products/Products';
+import '../../style/sass/Dashboard.scss';
 
 const Dashboard = () => {
   const { t } = useTranslation();
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div>
+    <div className="dashboard">
       <h2>{t('dashboard')}</h2>
-      <div className="info">
+      <div className="profile">
         <h3>{currentUser.name}</h3>
         <i>{currentUser.role}</i>
         <p>{currentUser.email}</p>

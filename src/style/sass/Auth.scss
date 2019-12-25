@@ -1,0 +1,23 @@
+.login, .signup {
+  margin: 0 auto;
+  max-width: 350px;
+  min-height: 60vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  input {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+// @media screen and (min-width: 768px) {
+//   .login, .signup {
+//     input {
+//       box-sizing: border-box;
+//       width: 100%;
+//     }
+//   }
+// }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import firebaseApp from '../../utils/firebaseApp';
 import 'firebase/auth';
+import '../../style/sass/Auth.scss';
 
 const Login = () => {
   const { t } = useTranslation();
@@ -17,10 +18,10 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login">
       <h2>{t('login')}</h2>
       <div className="error">{error}</div>
-      <form className="login-form" onSubmit={handleLogin}>
+      <form onSubmit={handleLogin}>
         <input type="email" placeholder={t('email')} onChange={handleEmail} required />
         <input type="password" placeholder={t('password')} onChange={handlePassword} required />
         <input type="submit" value={t('login')} />
