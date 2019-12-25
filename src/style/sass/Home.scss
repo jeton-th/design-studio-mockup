@@ -1,0 +1,36 @@
+.showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 50vh;
+}
+
+.product {
+  margin: 1.5em;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba($color: #000000, $alpha: 0.3);
+  transition: 300ms;
+  text-align: center;
+  
+  &:hover {
+    background-color: #fdfb5d;
+    box-shadow: 0 20px 30px rgba($color: #000000, $alpha: 0.3);
+  }
+}
+
+.lorem {
+  text-align: center;
+
+  p {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .showcase {
+    flex-direction: row;
+  }
+}

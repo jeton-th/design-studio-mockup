@@ -7,7 +7,6 @@ import '../../style/sass/Header.scss';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-  const changeLanguage = (event) => (i18n.changeLanguage(event.target.value));
   const { currentUser } = useContext(AuthContext);
   const [navShow, setNavShow] = useState('');
 
@@ -23,6 +22,16 @@ const Header = () => {
     }
   };
 
+  const changeLanguage = (event) => {
+    togglenavShow();
+    i18n.changeLanguage(event.target.value);
+  };
+
+  const logOut = () => {
+    togglenavShow();
+    firebaseApp.auth().signOut();
+  };
+
   return (
     <header className="main-header">
       <div className="container">
@@ -35,13 +44,15 @@ const Header = () => {
         <nav className={`main-nav ${navShow}`}>
           {currentUser ? (
             <div className="nav-links">
-              <Link to="/dashboard">{t('dashboard')}</Link>
-              <Link to="/" onClick={() => firebaseApp.auth().signOut()}>{t('logout')}</Link>
+              <Link to="/" onClick={togglenavShow}>{t('home')}</Link>
+              <Link to="/dashboard" onClick={togglenavShow}>{t('dashboard')}</Link>
+              <Link to="/" onClick={logOut}>{t('logout')}</Link>
             </div>
           ) : (
             <div className="nav-links">
-              <Link to="/login">{t('login')}</Link>
-              <Link to="/signup">{t('signup')}</Link>
+              <Link to="/" onClick={togglenavShow}>{t('home')}</Link>
+              <Link to="/login" onClick={togglenavShow}>{t('login')}</Link>
+              <Link to="/signup" onClick={togglenavShow}>{t('signup')}</Link>
             </div>
           )}
 

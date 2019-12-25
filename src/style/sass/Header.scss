@@ -107,7 +107,8 @@
   .nav-links {
     flex-grow: 1;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
+
     
     a {
       margin: 0 1em;
@@ -116,6 +117,11 @@
 
   .lang {
     order: initial;
+
+    button {
+      font-size: 16px;
+      padding: 0 1em;
+    }
   }
 
   .nav-icon {

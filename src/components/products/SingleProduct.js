@@ -48,7 +48,7 @@ const SingleProduct = ({ uid, product }) => {
           <h3>{t('edit-product')}</h3>
           {error && <div className="error">{error}</div>}
           <form onSubmit={(event) => updateProduct(event, uid)}>
-            <input type="text" value={name} onChange={handleName} placeholder={t('name')} required />
+            <input type="text" value={name} onChange={handleName} placeholder={t('title')} required />
             <textarea value={description} onChange={handleDescription} placeholder={t('description')} required />
             <input type="number" value={price} onChange={handlePrice} placeholder={t('price')} required />
 

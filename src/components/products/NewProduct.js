@@ -44,7 +44,7 @@ const NewProduct = () => {
           {error && <div className="error">{error}</div>}
           <form onSubmit={addProduct}>
             <label htmlFor="name">
-              {t('name')}
+              {t('title')}
 :
               <input type="text" id="name" value={name} onChange={handleName} required />
             </label>
