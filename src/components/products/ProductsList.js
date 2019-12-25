@@ -15,7 +15,7 @@ const ProductsList = () => {
     collection.onSnapshot((querySnapshot) => {
       const products = [];
       querySnapshot.forEach((doc) => {
-        products.push([doc.id, doc.data()]);
+        products.push({ uid: doc.id, data: doc.data() });
       });
       setProducts(products);
     });
@@ -25,8 +25,9 @@ const ProductsList = () => {
     <div className="products-list">
       {products && products.map((product) => (
         <SingleProduct
-          product={product}
-          key={`${currentUser.name}-${product[1].name}`}
+          uid={product.uid}
+          product={product.data}
+          key={`${currentUser.name}-${product.data.name}`}
         />
       ))}
     </div>

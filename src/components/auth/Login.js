@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import firebaseApp from '../../utils/firebaseApp';
 import 'firebase/auth';
-import '../../style/sass/Auth.css';
 
 const Login = () => {
   const { t } = useTranslation();

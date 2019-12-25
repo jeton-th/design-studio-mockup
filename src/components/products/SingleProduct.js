@@ -4,25 +4,65 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../auth/Auth';
 import { firestore } from '../../utils/firebaseApp';
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = ({ uid, product }) => {
   const { t } = useTranslation();
   const { currentUser } = useContext(AuthContext);
-  const [deletePrompt, setDeletePrompt] = useState('');
+  const [editModal, setEditModal] = useState('');
+  const [deleteModal, setDeleteModal] = useState('');
+  const [name, setName] = useState(product.name);
+  const [description, setDescription] = useState(product.description);
+  const [price, setPrice] = useState(product.price);
+  const [error, setError] = useState('');
+  const handleName = (event) => setName(event.target.value);
+  const handleDescription = (event) => setDescription(event.target.value);
+  const handlePrice = (event) => setPrice(event.target.value);
   const deleteProduct = (uid) => firestore.collection('products').doc(uid).delete();
+  const resetFields = () => {
+    setEditModal('');
+    setName(product.name);
+    setDescription(product.description);
+    setPrice(product.price);
+  };
+  const updateProduct = (event, uid) => {
+    event.preventDefault();
+    firestore.collection('products').doc(uid)
+      .update({
+        name: name || product.name,
+        description: description || product.description,
+        price: price || product.price,
+      })
+      .then(() => resetFields())
+      .catch(() => setError(t('document-missing')));
+  };
 
   return (
-    <div key={`${currentUser.name}-${product[1].name}`}>
-      <strong>{product[1].name}</strong>
+    <div key={`${currentUser.name}-${product.name}`}>
+      <strong>{product.name}</strong>
       <span> - $</span>
-      <span>{product[1].price}</span>
-      <button type="button">{t('edit')}</button>
-      <button type="button" onClick={() => setDeletePrompt('show')}>{t('delete')}</button>
+      <span>{product.price}</span>
+      <button type="button" onClick={() => setEditModal('show')}>{t('edit')}</button>
+      <button type="button" onClick={() => setDeleteModal('show')}>{t('delete')}</button>
 
-      <div className={`modal ${deletePrompt}`}>
-        <div className="delete-prompt">
+      <div className={`modal ${editModal}`}>
+        <div>
+          <h3>{t('edit-product')}</h3>
+          {error && <div className="error">{error}</div>}
+          <form onSubmit={(event) => updateProduct(event, uid)}>
+            <input type="text" value={name} onChange={handleName} placeholder={t('name')} required />
+            <textarea value={description} onChange={handleDescription} placeholder={t('description')} required />
+            <input type="number" value={price} onChange={handlePrice} placeholder={t('price')} required />
+
+            <button type="button" onClick={resetFields}>{t('cancel')}</button>
+            <button type="submit">{t('save')}</button>
+          </form>
+        </div>
+      </div>
+
+      <div className={`modal ${deleteModal}`}>
+        <div>
           <p>{t('delete-prompt')}</p>
-          <button type="button" onClick={() => setDeletePrompt('')}>{t('cancel')}</button>
-          <button type="button" onClick={() => deleteProduct(product[0])}>{t('delete')}</button>
+          <button type="button" onClick={() => setDeleteModal('')}>{t('cancel')}</button>
+          <button type="button" onClick={() => deleteProduct(uid)}>{t('delete')}</button>
         </div>
       </div>
     </div>
@@ -30,7 +70,8 @@ const SingleProduct = ({ product }) => {
 };
 
 SingleProduct.propTypes = {
-  product: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  uid: PropTypes.string.isRequired,
+  product: PropTypes.objectOf(PropTypes.shape).isRequired,
 };
 
 export default SingleProduct;

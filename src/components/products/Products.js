@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import NewProduct from './NewProduct';
 import ProductsList from './ProductsList';
+import '../../style/sass/Products.scss';
 
 const Products = () => {
   const { t } = useTranslation();
@@ -14,4 +15,5 @@ const Products = () => {
     </div>
   );
 };
+
 export default Products;

@@ -1,0 +1,28 @@
+.modal {
+  width: 0;
+  height: 0;
+  z-index: 100;
+  top: 0; left: 0;
+  position: fixed;
+  overflow: hidden;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.show {
+    width: 100%;
+    height: 100%;
+  }
+
+  div {
+    padding: 2em;
+    background-color: #eeeeee;
+  }
+
+  button {
+    float: right;
+    margin-left: 1em;
+  }
+}
