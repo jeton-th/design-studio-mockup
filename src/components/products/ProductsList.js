@@ -9,6 +9,7 @@ const ProductsList = () => {
 
   useEffect(() => {
     firestore.collection('products')
+      .orderBy('price')
       .onSnapshot((querySnapshot) => {
         const products = [];
         querySnapshot.forEach((doc) => {

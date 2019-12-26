@@ -7,7 +7,7 @@ const Home = () => {
 
   useEffect(() => {
     firestore.collection('products')
-      .orderBy('price').limit(3)
+      .orderBy('price', 'desc').limit(3)
       .onSnapshot((querySnapshot) => {
         const products = [];
         querySnapshot.forEach((doc) => {

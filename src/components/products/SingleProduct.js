@@ -31,7 +31,7 @@ const SingleProduct = ({ uid, product }) => {
       .update({
         name: name || product.name,
         description: description || product.description,
-        price: price || product.price,
+        price: Number(price || product.price),
       })
       .then(() => resetFields())
       .catch(() => setError(t('document-missing')));
