@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../auth/Auth';
 import { firestore } from '../../utils/firebaseApp';
 
@@ -36,12 +38,27 @@ const SingleProduct = ({ uid, product }) => {
   };
 
   return (
-    <div key={`${currentUser.name}-${product.name}`}>
-      <strong>{product.name}</strong>
-      <span> - $</span>
-      <span>{product.price}</span>
-      <button type="button" onClick={() => setEditModal('show')}>{t('edit')}</button>
-      <button type="button" onClick={() => setDeleteModal('show')}>{t('delete')}</button>
+    <div
+      className="product-item"
+      key={`${currentUser.name}-${product.name}`}
+    >
+      <h3>
+        <span>{product.name}</span>
+        <span> - $</span>
+        <span>{product.price}</span>
+      </h3>
+
+      {(currentUser.role === 'admin' || product.owner === currentUser.uid)
+        && (
+          <div>
+            <button type="button" className="icon-button" onClick={() => setEditModal('show')}>
+              <FontAwesomeIcon icon={faEdit} />
+            </button>
+            <button type="button" className="icon-button" onClick={() => setDeleteModal('show')}>
+              <FontAwesomeIcon icon={faTrashAlt} />
+            </button>
+          </div>
+        )}
 
       <div className={`modal ${editModal}`}>
         <div>

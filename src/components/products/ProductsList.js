@@ -8,17 +8,14 @@ const ProductsList = () => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    const collection = (currentUser.role === 'admin')
-      ? firestore.collection('products')
-      : firestore.collection('products').where('owner', '==', currentUser.uid);
-
-    collection.onSnapshot((querySnapshot) => {
-      const products = [];
-      querySnapshot.forEach((doc) => {
-        products.push({ uid: doc.id, data: doc.data() });
+    firestore.collection('products')
+      .onSnapshot((querySnapshot) => {
+        const products = [];
+        querySnapshot.forEach((doc) => {
+          products.push({ uid: doc.id, data: doc.data() });
+        });
+        setProducts(products);
       });
-      setProducts(products);
-    });
   }, [currentUser]);
 
   return (

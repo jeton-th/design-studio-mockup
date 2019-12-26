@@ -7,7 +7,7 @@ import '../../style/sass/Header.scss';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-  const { currentUser } = useContext(AuthContext);
+  const { userLoading, currentUser } = useContext(AuthContext);
   const [navShow, setNavShow] = useState('');
 
   const togglenavShow = () => {
@@ -32,6 +32,31 @@ const Header = () => {
     firebaseApp.auth().signOut();
   };
 
+  let navLinks;
+  if (userLoading) {
+    navLinks = (
+      <div className="nav-links">
+        <Link to="/" onClick={togglenavShow}>{t('home')}</Link>
+      </div>
+    );
+  } else if (currentUser) {
+    navLinks = (
+      <div className="nav-links">
+        <Link to="/" onClick={togglenavShow}>{t('home')}</Link>
+        <Link to="/dashboard" onClick={togglenavShow}>{t('dashboard')}</Link>
+        <Link to="/" onClick={logOut}>{t('logout')}</Link>
+      </div>
+    );
+  } else {
+    navLinks = (
+      <div className="nav-links">
+        <Link to="/" onClick={togglenavShow}>{t('home')}</Link>
+        <Link to="/login" onClick={togglenavShow}>{t('login')}</Link>
+        <Link to="/signup" onClick={togglenavShow}>{t('signup')}</Link>
+      </div>
+    );
+  }
+
   return (
     <header className="main-header">
       <div className="container">
@@ -42,19 +67,7 @@ const Header = () => {
         </div>
 
         <nav className={`main-nav ${navShow}`}>
-          {currentUser ? (
-            <div className="nav-links">
-              <Link to="/" onClick={togglenavShow}>{t('home')}</Link>
-              <Link to="/dashboard" onClick={togglenavShow}>{t('dashboard')}</Link>
-              <Link to="/" onClick={logOut}>{t('logout')}</Link>
-            </div>
-          ) : (
-            <div className="nav-links">
-              <Link to="/" onClick={togglenavShow}>{t('home')}</Link>
-              <Link to="/login" onClick={togglenavShow}>{t('login')}</Link>
-              <Link to="/signup" onClick={togglenavShow}>{t('signup')}</Link>
-            </div>
-          )}
+          {navLinks}
 
           <div className="lang">
             <button type="button" value="en" onClick={changeLanguage}>English</button>

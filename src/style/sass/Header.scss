@@ -3,7 +3,7 @@
   left: 0; top: 0;
   width: 100%;
   height: 60px;
-  background-color: rgb(18, 65, 41);
+  background-color: #222222;
 
   .container {
     height: 100%;
@@ -15,13 +15,14 @@
   .brand {
 
     h1 {
-      font-size: 20px;
-      font-weight: 500;
+      font-size: 1.1em;
+      font-weight: normal;
     }
   }
 
   a {
-    margin: 0 1em;
+    margin: 0.5em;
+    font-size: 0.9em;
     text-decoration: none;
     color: #ffffff;
   }
@@ -34,7 +35,7 @@
   height: 0;
   left: 0;
   top: 60px;
-  background-color: rgb(18, 65, 41);
+  background-color: #222222;
   transition: height 200ms;
   overflow: auto;
 
@@ -52,16 +53,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  a {
-    margin: 0.5em 0;
-  }
 }
  
 .lang {
   order: -1;
 
   button {
+    padding: 0;
+    margin: 0 0.5em;
+    font-size: 0.8em;
     border: none;
     background: none;
     color: #ffffff;
@@ -119,8 +119,8 @@
     order: initial;
 
     button {
-      font-size: 16px;
-      padding: 0 1em;
+      margin: 0 1em;
+      font-size: 0.9em;
     }
   }
 

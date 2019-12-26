@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../auth/Auth';
 import { firestore } from '../../utils/firebaseApp';
 
@@ -28,7 +30,7 @@ const NewProduct = () => {
     event.preventDefault();
     firestore.collection('products').doc()
       .set({
-        name, description, price, owner: currentUser.uid,
+        name, description, price: Number(price), owner: currentUser.uid,
       })
       .then(() => resetFields())
       .catch((error) => setError(error));
@@ -36,7 +38,13 @@ const NewProduct = () => {
 
   return (
     <div className="new-product">
-      <button type="button" onClick={() => setNewModal('show')}>{t('new-product')}</button>
+      <button
+        type="button"
+        className="icon-button"
+        onClick={() => setNewModal('show')}
+      >
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
 
       <div className={`modal ${newModal}`}>
         <div>

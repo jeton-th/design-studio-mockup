@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-// import { useTranslation } from 'react-i18next';
 import { firestore } from '../../utils/firebaseApp';
 import '../../style/sass/Home.scss';
 
 const Home = () => {
-  // const { t } = useTranslation();
   const [products, setProducts] = useState(null);
 
   useEffect(() => {

@@ -26,6 +26,15 @@ const Login = () => {
         <input type="password" placeholder={t('password')} onChange={handlePassword} required />
         <input type="submit" value={t('login')} />
       </form>
+
+      <div className="demo">
+        <strong>Demo users:</strong>
+        <code>
+          <p>admin@example.com 123456</p>
+          <p>seller@example.com 123456</p>
+          <p>guest@example.com 123456</p>
+        </code>
+      </div>
     </div>
   );
 };
